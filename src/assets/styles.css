@@ -1,3 +1,14 @@
+@media (max-width: 772px) {
+    /* мобильный стиль */
+}
+@media (min-width: 772px) and (max-width: 1072px) {
+    /* планшетный стиль */
+}
+@media (min-width: 1072px) {
+    /* десктопный стиль */
+}
+
+
 .buttob {
     animation-name: grow;
     animation-duration: 2s;
@@ -69,10 +80,6 @@ th, td {
 input[type="text"], select {
     margin: 5%;
     padding: 5px;
-}
-
-input:focus, select:focus {
-    border-color: green;
 }
 
 input[type="submit"] {
