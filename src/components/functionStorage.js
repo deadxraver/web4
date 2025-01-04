@@ -30,26 +30,19 @@ export function onPasswordConfirm(e) {
 }
 
 export function onLogin() {
-	// axios.post('/user', {
-	// 	login: loginValue.value,
-	// 	password: passwordValue.value
-	// })
-	// 	.then(function (response) {
-	// 		console.log(response);
-	// 	})
-	// 	.catch(function (error) {
-	// 		console.log(error);
-	// 	});
-
-	let resp = axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/login?login=${loginValue.value}&password=${passwordValue.value}`);
+	let login = loginValue.value;
+	let password = passwordValue.value;
+	let resp = axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/login?login=${login}&password=${password}`);
 	resp.then(function(value) {
 		console.log(value);
 		if (value.data === "Logged in") {
 			isAuthorized.value = true;
-			// window.location.href="/main.html";
+			sessionStorage.setItem("login", login);
+			sessionStorage.setItem("password", password);
+			document.title = 'копаюсь... в чреве кита... грязюку всю';
 		}
 	});
-	return false; // заглушечка
+	return false;
 }
 
 export function onRegistration() {
@@ -58,5 +51,5 @@ export function onRegistration() {
 		return false;
 	}
 	console.log(axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/register?login=${loginValue.value}&password=${passwordValue.value}`));
-	return false; // заглушечка
+	return false;
 }

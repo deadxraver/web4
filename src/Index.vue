@@ -2,17 +2,13 @@
 import './assets/styles.css'
 import {isAuthorized} from './components/declareConsts.js'
 import Graph from "@/graph-page/Graph.vue";
-import Main from "@/main-page/Main.vue";
+import Main from "@/auth-page/Auth.vue";
 
 </script>
 
 <template>
-  <div id="start-page" v-if="!isAuthorized">
-    <Main/>
-  </div>
-  <div v-else id="graph-page">
-    <Graph/>
-  </div>
+  <Main v-if="!isAuthorized"/>
+  <Graph v-else/>
 </template>
 
 <style scoped>

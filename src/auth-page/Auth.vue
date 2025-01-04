@@ -1,7 +1,7 @@
 <script setup>
 import '../assets/styles.css'
 import {
-  buttonText,
+  buttonText, isAuthorized,
   login,
   loginValue,
   passwordConfirm,
@@ -15,7 +15,20 @@ import {
   onPasswordInput,
   onRegistration
 } from '../components/functionStorage.js'
-import Header from "@/main-page/Header.vue";
+import Header from "@/auth-page/Header.vue";
+
+let sessionLogin = sessionStorage.getItem('login');
+let sessionPassword = sessionStorage.getItem('password');
+if (sessionLogin && sessionPassword) {
+  let resp = axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/login?login=${sessionLogin}&password=${sessionPassword}`);
+  resp.then(function(value) {
+    console.log(value);
+    if (value.data === "Logged in") {
+      isAuthorized.value = true;
+      document.title = 'копаюсь... в чреве кита... грязюку всю';
+    }
+  });
+}
 
 </script>
 
