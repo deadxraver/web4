@@ -17,10 +17,10 @@ import {
 } from '../components/functionStorage.js'
 import Header from "@/auth-page/Header.vue";
 
-let sessionLogin = sessionStorage.getItem('login');
-let sessionPassword = sessionStorage.getItem('password');
-if (sessionLogin && sessionPassword) {
-  let resp = axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/login?login=${sessionLogin}&password=${sessionPassword}`);
+let localLogin = localStorage.getItem('login');
+let localPassword = localStorage.getItem('password');
+if (localLogin && localPassword ) {
+  let resp = axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/login?login=${localLogin}&password=${localPassword}`);
   resp.then(function(value) {
     console.log(value);
     if (value.data === "Logged in") {
