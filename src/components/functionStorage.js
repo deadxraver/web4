@@ -9,7 +9,6 @@ import {
 
 import 'https://cdn.jsdelivr.net/gh/cosmogicofficial/quantumalert@latest/minfile/quantumalert.js'
 import 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'
-// import 'https://unpkg.com/axios/dist/axios.min.js'
 
 export function logregChange() {
 	login.value = !login.value;
