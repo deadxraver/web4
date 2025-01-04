@@ -1,20 +1,33 @@
 <script setup>
 import {count, fullName, group, variant} from "@/components/declareConsts.js";
+import {onMounted, ref} from "vue";
+
 setInterval(() => {
   const date = new Date();
   count.value = date.toLocaleDateString('ru-RU') + ' ' + date.toLocaleTimeString('ru-RU');
-}, 1000)
+}, 1000);
+
+const pFullName = ref(null);
+const pGroup = ref(null);
+const pVariant = ref(null);
+
+onMounted(() => {
+  pFullName.value.style = `color:rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`
+  pGroup.value.style = `color:rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`
+  pVariant.value.style = `color:rgb(${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)}, ${Math.round(Math.random() * 255)})`
+})
+
 </script>
 
 <template>
   <header>
-    <p><a style="color:red" href="https://t.me/bawdyPlace">
+    <p><a ref="pFullName" href="https://t.me/bawdyPlace">
       {{ fullName }}
     </a></p>
-    <p style="color:green">
+    <p ref="pGroup">
       {{ group }}
     </p>
-    <p style="color:blue">
+    <p ref="pVariant">
       {{ variant }}
     </p>
   </header>

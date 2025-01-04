@@ -11,7 +11,6 @@ import {
 } from '../components/functionStorage.js'
 import Header from "@/main-page/Header.vue";
 
-
 </script>
 
 <template>
