@@ -20,7 +20,7 @@ export function onPasswordConfirm(e) {
 	passwordConfirm.value = e.target.value.replaceAll(' ', '');
 }
 
-export function onLogin(e) {
+export function onLogin() {
 	return false; // заглушечка
 }
 
