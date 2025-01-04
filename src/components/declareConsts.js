@@ -1,6 +1,15 @@
 import {ref} from "vue";
 
-export const login = ref(true)
+let loginVal = sessionStorage.getItem("login");
+if (loginVal) {
+	loginVal = loginVal === 'true';
+}
+else {
+	loginVal = true;
+	sessionStorage.setItem("login", loginVal);
+}
+
+export const login = ref(loginVal);
 export const buttonText = ref(login.value ? 'Не зарегистрирован' : 'Уже зарегистрирован');
 
 export const loginValue = ref('');

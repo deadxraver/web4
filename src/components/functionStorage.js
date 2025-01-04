@@ -4,6 +4,7 @@ import 'https://cdn.jsdelivr.net/gh/cosmogicofficial/quantumalert@latest/minfile
 
 export function logregChange() {
 	login.value = !login.value;
+	sessionStorage.setItem("login", login.value);
 	buttonText.value = login.value ? 'Не зарегистрирован' : 'Уже зарегистрирован';
 }
 
@@ -20,7 +21,7 @@ export function onPasswordConfirm(e) {
 }
 
 export function onLogin(e) {
-
+	return false; // заглушечка
 }
 
 export function onRegistration() {
@@ -28,5 +29,5 @@ export function onRegistration() {
 		Qual.error("ээээм", "пароли не совпадают", err);
 		return false;
 	}
-	return true;
+	return false; // заглушечка
 }
