@@ -41,7 +41,6 @@ if (localLogin && localPassword ) {
       <input required type="password" placeholder="Пароль" v-model="passwordValue" @input="onPasswordInput">
       <br>
       <button type="submit">Войти</button>
-      <!--      TODO: make login-->
     </form>
     <form v-else @submit.prevent="onRegistration">
       <input required type="text" placeholder="Имя пользователя" v-model="loginValue" @input="onLoginInput">
@@ -52,7 +51,6 @@ if (localLogin && localPassword ) {
              @input="onPasswordConfirm">
       <br>
       <button type="submit">Зарегистрироваться</button>
-      <!--      TODO: make normal reg-->
     </form>
     <button @click="logregChange">{{ buttonText }}</button>
   </div>
