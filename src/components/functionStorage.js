@@ -1,6 +1,15 @@
-import {buttonText, login, loginValue, passwordConfirm, passwordValue} from "@/components/declareConsts.js";
+import {
+	buttonText,
+	isAuthorized,
+	login,
+	loginValue,
+	passwordConfirm,
+	passwordValue
+} from "@/components/declareConsts.js";
 
 import 'https://cdn.jsdelivr.net/gh/cosmogicofficial/quantumalert@latest/minfile/quantumalert.js'
+import 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'
+// import 'https://unpkg.com/axios/dist/axios.min.js'
 
 export function logregChange() {
 	login.value = !login.value;
@@ -21,6 +30,25 @@ export function onPasswordConfirm(e) {
 }
 
 export function onLogin() {
+	// axios.post('/user', {
+	// 	login: loginValue.value,
+	// 	password: passwordValue.value
+	// })
+	// 	.then(function (response) {
+	// 		console.log(response);
+	// 	})
+	// 	.catch(function (error) {
+	// 		console.log(error);
+	// 	});
+
+	let resp = axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/login?login=${loginValue.value}&password=${passwordValue.value}`);
+	resp.then(function(value) {
+		console.log(value);
+		if (value.data === "Logged in") {
+			isAuthorized.value = true;
+			// window.location.href="/main.html";
+		}
+	});
 	return false; // заглушечка
 }
 
@@ -29,5 +57,6 @@ export function onRegistration() {
 		Qual.error("ээээм", "пароли не совпадают", err);
 		return false;
 	}
+	console.log(axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/register?login=${loginValue.value}&password=${passwordValue.value}`));
 	return false; // заглушечка
 }

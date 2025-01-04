@@ -9,6 +9,8 @@ else {
 	sessionStorage.setItem("login", loginVal);
 }
 
+export const isAuthorized = ref(false);
+
 export const login = ref(loginVal);
 export const buttonText = ref(login.value ? 'Не зарегистрирован' : 'Уже зарегистрирован');
 
