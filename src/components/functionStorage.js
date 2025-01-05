@@ -76,3 +76,37 @@ export function onLogout() {
 	isAuthorized.value = false;
 	document.title = 'лаба 4 (послежняя)'
 }
+
+export function onDelete() {
+	Qual.confirm(
+		"Внимание!",
+		"Вы уверены, что хотите удалить аккаунт?",
+		war,
+		"ДА я хорошо подумал",
+		"Ой нет я передумал",
+		"window.deleteConfirm",
+		"window.closePopup"
+	);
+}
+
+window.closePopup = () => {
+	document.getElementById('closepopup').click();
+}
+
+window.deleteConfirm = () => {
+	let login = localStorage.getItem("login");
+	let password = localStorage.getItem("password");
+	axios.get(`${url}/auth/remove?login=${login}&password=${password}`).then(value => {
+		if (value.data === "Deleted") {
+			isAuthorized.value = false;
+			localStorage.removeItem("login");
+			localStorage.removeItem("password");
+			document.title = 'копаюсь... в чреве кита... грязюку всю';
+			window.closePopup();
+		} else {
+			Qual.error("error", "какая то ошибка");
+		}
+	}).catch(() => {
+		Qual.error("error", "какая то ошибка");
+	});
+}
