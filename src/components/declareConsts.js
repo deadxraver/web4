@@ -9,6 +9,8 @@ else {
 	sessionStorage.setItem("login", loginVal);
 }
 
+export const url = 'https://super-shershni.ru:25002/WEB4-BACK/api'
+
 export const isAuthorized = ref(false);
 
 export const login = ref(loginVal);

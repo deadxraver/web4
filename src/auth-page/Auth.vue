@@ -5,7 +5,7 @@ import {
   login,
   loginValue,
   passwordConfirm,
-  passwordValue
+  passwordValue, url
 } from '../components/declareConsts.js'
 import {
   logregChange,
@@ -20,7 +20,7 @@ import Header from "@/auth-page/Header.vue";
 let localLogin = localStorage.getItem('login');
 let localPassword = localStorage.getItem('password');
 if (localLogin && localPassword ) {
-  let resp = axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/login?login=${localLogin}&password=${localPassword}`);
+  let resp = axios.get(`${url}/auth/login?login=${localLogin}&password=${localPassword}`);
   resp.then(function(value) {
     console.log(value);
     if (value.data === "Logged in") {

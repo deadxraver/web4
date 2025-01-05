@@ -4,7 +4,7 @@ import {
 	login,
 	loginValue,
 	passwordConfirm,
-	passwordValue
+	passwordValue, url
 } from "@/components/declareConsts.js";
 
 import 'https://cdn.jsdelivr.net/gh/cosmogicofficial/quantumalert@latest/minfile/quantumalert.js'
@@ -31,7 +31,7 @@ export function onPasswordConfirm(e) {
 export function onLogin() {
 	let login = loginValue.value;
 	let password = passwordValue.value;
-	let resp = axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/login?login=${login}&password=${password}`);
+	let resp = axios.get(`${url}/auth/login?login=${login}&password=${password}`);
 	resp.then(function(value) {
 		console.log(value);
 		if (value.data === "Logged in") {
@@ -51,7 +51,7 @@ export function onRegistration() {
 		Qual.error("ээээм", "пароли не совпадают", err);
 		return false;
 	}
-	axios.get(`https://super-shershni.ru:25002/WEB4-BACK/api/auth/register?login=${login}&password=${password}`).then(value => {
+	axios.get(`${url}/auth/register?login=${login}&password=${password}`).then(value => {
 		if (value.data === "Registered") {
 			isAuthorized.value = true;
 			localStorage.setItem("login", login);
