@@ -1,7 +1,7 @@
 <script setup>
 import './assets/styles.css'
 import {isAuthorized} from './components/declareConsts.js'
-import Graph from "@/graph-page/Graph.vue";
+import Graph from "@/graph-page/MainPage.vue";
 import Main from "@/auth-page/Auth.vue";
 
 </script>

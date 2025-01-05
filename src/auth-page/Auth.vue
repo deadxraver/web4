@@ -14,7 +14,7 @@ import {
   onPasswordConfirm,
   onPasswordInput,
   onRegistration
-} from '../components/functionStorage.js'
+} from '../components/logregListeners.js'
 import Header from "@/auth-page/Header.vue";
 
 let localLogin = localStorage.getItem('login');
@@ -22,7 +22,6 @@ let localPassword = localStorage.getItem('password');
 if (localLogin && localPassword ) {
   let resp = axios.get(`${url}/auth/login?login=${localLogin}&password=${localPassword}`);
   resp.then(function(value) {
-    console.log(value);
     if (value.data === "Logged in") {
       isAuthorized.value = true;
       document.title = 'копаюсь... в чреве кита... грязюку всю';

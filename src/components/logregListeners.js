@@ -33,7 +33,6 @@ export function onLogin() {
 	let password = passwordValue.value;
 	let resp = axios.get(`${url}/auth/login?login=${login}&password=${password}`);
 	resp.then(function(value) {
-		console.log(value);
 		if (value.data === "Logged in") {
 			isAuthorized.value = true;
 			localStorage.setItem("login", login);
