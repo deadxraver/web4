@@ -61,3 +61,9 @@ export function onRegistration() {
 	});
 	return false;
 }
+
+export function onLogout() {
+	localStorage.removeItem("login");
+	localStorage.removeItem("password");
+	isAuthorized.value = false;
+}
