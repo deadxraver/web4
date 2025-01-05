@@ -1,6 +1,6 @@
 import {ref} from "vue";
 
-let loginVal = sessionStorage.getItem("login");
+let loginVal = localStorage.getItem("login");
 if (loginVal) {
 	loginVal = loginVal === 'true';
 }
@@ -14,7 +14,7 @@ export const url = 'https://super-shershni.ru:25002/WEB4-BACK/api'
 export const isAuthorized = ref(false);
 
 export const login = ref(loginVal);
-export const buttonText = ref(login.value ? 'Не зарегистрирован' : 'Уже зарегистрирован');
+export const buttonText = ref(login.value ? 'Я новенький' : 'Я уже смешарик');
 
 export const loginValue = ref('');
 export const passwordValue = ref('');

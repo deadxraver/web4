@@ -13,7 +13,7 @@ import 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'
 export function logregChange() {
 	login.value = !login.value;
 	localStorage.setItem("login", login.value);
-	buttonText.value = login.value ? 'Не зарегистрирован' : 'Уже зарегистрирован';
+	buttonText.value = login.value ? 'Я новенький' : 'Я уже смешарик';
 }
 
 export function onLoginInput(e) {
@@ -39,6 +39,10 @@ export function onLogin() {
 			localStorage.setItem("login", login);
 			localStorage.setItem("password", password);
 			document.title = 'копаюсь... в чреве кита... грязюку всю';
+		} else if (value.data === "Wrong password") {
+			Qual.error("Ошибка", "Неверный пароль", err);
+		} else if (value.data === "User not found") {
+			Qual.error("Ошибка", `Пользователя с именем '${login}' не существует`, err);
 		}
 	});
 	return false;
@@ -57,7 +61,11 @@ export function onRegistration() {
 			localStorage.setItem("login", login);
 			localStorage.setItem("password", password);
 			document.title = 'копаюсь... в чреве кита... грязюку всю';
+		} else {
+			Qual.error("Ошибка", "Пользователь с таким именем уже существует", err)
 		}
+	}).catch(() => {
+		Qual.error("error", "какая то ошибка", err);
 	});
 	return false;
 }
@@ -66,4 +74,5 @@ export function onLogout() {
 	localStorage.removeItem("login");
 	localStorage.removeItem("password");
 	isAuthorized.value = false;
+	document.title = 'лаба 4 (послежняя)'
 }
