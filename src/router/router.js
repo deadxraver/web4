@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import Index from '@/Main.vue';
 import Console from '@/admin/Console.vue';
+import NotFound from "@/components/NotFound.vue";
 
 const routes = [
 	{
@@ -13,6 +14,11 @@ const routes = [
 		path: '/admin',
 		name: 'AdminConsole',
 		component: Console
+	},
+	{
+		path: '/:pathMatch(.*)*',
+		name: 'NotFound',
+		component: NotFound
 	}
 ];
 
