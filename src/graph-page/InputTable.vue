@@ -1,5 +1,5 @@
 <script setup>
-import {handleSubmit, r, x, y} from "@/graph-page/formElements.js";
+import {handleSubmit, r, rChange, x, y} from "@/graph-page/formElements.js";
 import {ref} from "vue";
 
 const pButtob = ref(null);
@@ -37,7 +37,7 @@ const pButtob = ref(null);
       <tr>
         <td>R</td>
         <td>
-          <select required v-model="r">
+          <select required v-model.number="r" @change="rChange">
             <option>0</option>
             <option>1</option>
             <option>2</option>

@@ -1,13 +1,11 @@
 <script setup>
-import './CanvasDrawer.js'
-window.onload = () => {
-  window.canvasDrawer = new CanvasDrawer();
-  window.canvasDrawer.redrawAll(1);
-}
+
 </script>
 
 <template>
-  <canvas id="canvas" width="450px" height="450px"></canvas>
+  <div style="text-align: center">
+    <canvas ref="canvas" id="canvas" width="450px" height="450px" style="display: none"></canvas>
+  </div>
 </template>
 
 <style scoped>

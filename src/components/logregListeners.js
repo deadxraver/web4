@@ -1,5 +1,5 @@
 import {
-	buttonText,
+	buttonText, dots,
 	isAuthorized,
 	login,
 	loginValue,
@@ -38,6 +38,7 @@ export function onLogin() {
 		localStorage.setItem("password", password);
 		document.title = 'копаюсь... в чреве кита... грязюку всю';
 		console.log(value.data);
+		document.getElementById("canvas").style.display = '';
 	}).catch(function (err) {
 		console.log(err.message);
 		Qual.error("Ошибка", err.message);
@@ -57,6 +58,7 @@ export function onRegistration() {
 		localStorage.setItem("login", login);
 		localStorage.setItem("password", password);
 		document.title = 'копаюсь... в чреве кита... грязюку всю';
+		document.getElementById("canvas").style.display = '';
 	}).catch((err) => {
 		Qual.error("error", err.message);
 	});
@@ -68,6 +70,7 @@ export function onLogout() {
 	localStorage.removeItem("password");
 	isAuthorized.value = false;
 	document.title = 'лаба 4 (послежняя)'
+	document.getElementById("canvas").style.display = 'none';
 }
 
 export function onDelete() {
@@ -96,6 +99,8 @@ window.deleteConfirm = () => {
 			localStorage.removeItem("password");
 			document.title = 'копаюсь... в чреве кита... грязюку всю';
 			window.closePopup();
+			dots.value = [];
+			document.getElementById("canvas").style.display = 'none';
 		} else {
 			Qual.error("error", "какая то ошибка");
 		}
