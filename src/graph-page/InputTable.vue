@@ -38,10 +38,6 @@ const pButtob = ref(null);
         <td>R</td>
         <td>
           <select required v-model="r">
-            <option>-4</option>
-            <option>-3</option>
-            <option>-2</option>
-            <option>-1</option>
             <option>0</option>
             <option>1</option>
             <option>2</option>
