@@ -1,10 +1,9 @@
 <script setup>
-import './assets/styles.css'
 
 </script>
 
 <template>
-  <router-view />
+admin mode eeee
 </template>
 
 <style scoped>
