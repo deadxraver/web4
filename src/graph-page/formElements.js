@@ -19,6 +19,18 @@ export function handleSubmit() {
 	return false;
 }
 
+export function deleteDots() {
+	let login = localStorage.getItem("login");
+	let password = localStorage.getItem("password");
+	axios.get(`${url}/main/clear?login=${login}&password=${password}`).then(() => {
+		dots.value = [];
+		window.canvasDrawer.redrawAll(r.value);
+		Qual.success("Ура!", "Точки успешно удалены");
+	}).catch(msg => {
+		console.log(msg.message);
+	})
+}
+
 export function rChange() {
 	window.canvasDrawer.redrawAll(r.value);
 	sessionStorage.setItem("r", r.value);
