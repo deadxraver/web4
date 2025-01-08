@@ -9,6 +9,8 @@ import {
 
 import 'https://cdn.jsdelivr.net/gh/cosmogicofficial/quantumalert@latest/minfile/quantumalert.js'
 import 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js'
+import {r} from "@/graph-page/formElements.js";
+import {CanvasDrawer} from "@/graph-page/CanvasDrawer.js";
 
 export function logregChange() {
 	login.value = !login.value;
@@ -39,6 +41,9 @@ export function onLogin() {
 		document.title = 'копаюсь... в чреве кита... грязюку всю';
 		console.log(value.data);
 		document.getElementById("canvas").style.display = '';
+		dots.value = value.data;
+		window.canvasDrawer = new CanvasDrawer();
+		canvasDrawer.redrawAll(r.value);
 	}).catch(function (err) {
 		if (err.status === 401) {
 			Qual.error("Ошибка", `Пользователя с именем '${login}' не существует`);
@@ -62,6 +67,9 @@ export function onRegistration() {
 		localStorage.setItem("password", password);
 		document.title = 'копаюсь... в чреве кита... грязюку всю';
 		document.getElementById("canvas").style.display = '';
+		dots.value = [];
+		window.canvasDrawer = new CanvasDrawer();
+		canvasDrawer.redrawAll(r.value);
 	}).catch((err) => {
 		if (err.status === 409) {
 			Qual.error("Ошибка", `Пользователь с именем '${login}' уже существует, придумайте другое`);
@@ -76,6 +84,8 @@ export function onLogout() {
 	isAuthorized.value = false;
 	document.title = 'лаба 4 (послежняя)'
 	document.getElementById("canvas").style.display = 'none';
+	dots.value = [];
+	window.canvasDrawer.redrawAll(r.value);
 }
 
 export function onDelete() {
@@ -104,6 +114,7 @@ window.deleteConfirm = () => {
 		document.title = 'копаюсь... в чреве кита... грязюку всю';
 		window.closePopup();
 		dots.value = [];
+		window.canvasDrawer.redrawAll(r.value);
 		document.getElementById("canvas").style.display = 'none';
 	}).catch((msg) => {
 		Qual.error("error", msg.message);
