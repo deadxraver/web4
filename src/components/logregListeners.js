@@ -40,8 +40,11 @@ export function onLogin() {
 		console.log(value.data);
 		document.getElementById("canvas").style.display = '';
 	}).catch(function (err) {
-		console.log(err.message);
-		Qual.error("Ошибка", err.message);
+		if (err.status === 401) {
+			Qual.error("Ошибка", `Пользователя с именем '${login}' не существует`);
+		} else if (err.status === 403) {
+			Qual.error("Ошибка", `Неверный пароль, попробуйте снова`);
+		} else Qual.error("Ошибка", err.message);
 	});
 	return false;
 }
@@ -60,7 +63,9 @@ export function onRegistration() {
 		document.title = 'копаюсь... в чреве кита... грязюку всю';
 		document.getElementById("canvas").style.display = '';
 	}).catch((err) => {
-		Qual.error("error", err.message);
+		if (err.status === 409) {
+			Qual.error("Ошибка", `Пользователь с именем '${login}' уже существует, придумайте другое`);
+		} else Qual.error("error", err.message);
 	});
 	return false;
 }
@@ -92,19 +97,15 @@ window.closePopup = () => {
 window.deleteConfirm = () => {
 	let login = localStorage.getItem("login");
 	let password = localStorage.getItem("password");
-	axios.get(`${url}/auth/remove?login=${login}&password=${password}`).then(value => {
-		if (value.data === "Deleted") {
-			isAuthorized.value = false;
-			localStorage.removeItem("login");
-			localStorage.removeItem("password");
-			document.title = 'копаюсь... в чреве кита... грязюку всю';
-			window.closePopup();
-			dots.value = [];
-			document.getElementById("canvas").style.display = 'none';
-		} else {
-			Qual.error("error", "какая то ошибка");
-		}
-	}).catch(() => {
-		Qual.error("error", "какая то ошибка");
+	axios.get(`${url}/auth/remove?login=${login}&password=${password}`).then(() => {
+		isAuthorized.value = false;
+		localStorage.removeItem("login");
+		localStorage.removeItem("password");
+		document.title = 'копаюсь... в чреве кита... грязюку всю';
+		window.closePopup();
+		dots.value = [];
+		document.getElementById("canvas").style.display = 'none';
+	}).catch((msg) => {
+		Qual.error("error", msg.message);
 	});
 }
