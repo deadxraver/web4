@@ -22,11 +22,10 @@ let localPassword = localStorage.getItem('password');
 if (localLogin && localPassword ) {
   let resp = axios.get(`${url}/auth/login?login=${localLogin}&password=${localPassword}`);
   resp.then(function(value) {
-    if (value.data === "Logged in") {
       isAuthorized.value = true;
       document.title = 'копаюсь... в чреве кита... грязюку всю';
-    }
-  });
+      console.log(value.data);
+  }).catch(() => {});
 }
 
 </script>

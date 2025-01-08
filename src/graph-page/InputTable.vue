@@ -1,5 +1,5 @@
 <script setup>
-import {checkY, handleSubmit, r, x, y, yErrorText} from "@/graph-page/formElements.js";
+import {handleSubmit, r, x, y} from "@/graph-page/formElements.js";
 import {ref} from "vue";
 
 const pButtob = ref(null);
@@ -31,8 +31,7 @@ const pButtob = ref(null);
       <tr>
         <td>Y</td>
         <td>
-          <input required @input="checkY(pButtob)" type="number" v-model="y" placeholder="Значение от -3 до 3">
-          <p style="color: red">{{ yErrorText }}</p>
+          <input required  type="number" v-model="y" placeholder="Значение от -3 до 3" min="-3" max="3" step="any">
         </td>
       </tr>
       <tr>

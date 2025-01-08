@@ -32,17 +32,15 @@ export function onLogin() {
 	let login = loginValue.value;
 	let password = passwordValue.value;
 	let resp = axios.get(`${url}/auth/login?login=${login}&password=${password}`);
-	resp.then(function(value) {
-		if (value.data === "Logged in") {
-			isAuthorized.value = true;
-			localStorage.setItem("login", login);
-			localStorage.setItem("password", password);
-			document.title = 'копаюсь... в чреве кита... грязюку всю';
-		} else if (value.data === "Wrong password") {
-			Qual.error("Ошибка", "Неверный пароль", err);
-		} else if (value.data === "User not found") {
-			Qual.error("Ошибка", `Пользователя с именем '${login}' не существует`, err);
-		}
+	resp.then(function (value) {
+		isAuthorized.value = true;
+		localStorage.setItem("login", login);
+		localStorage.setItem("password", password);
+		document.title = 'копаюсь... в чреве кита... грязюку всю';
+		console.log(value.data);
+	}).catch(function (err) {
+		console.log(err.message);
+		Qual.error("Ошибка", err.message);
 	});
 	return false;
 }
@@ -51,20 +49,16 @@ export function onRegistration() {
 	let login = loginValue.value;
 	let password = passwordValue.value;
 	if (passwordValue.value !== passwordConfirm.value) {
-		Qual.error("ээээм", "пароли не совпадают", err);
+		Qual.error("ээээм", "пароли не совпадают");
 		return false;
 	}
-	axios.get(`${url}/auth/register?login=${login}&password=${password}`).then(value => {
-		if (value.data === "Registered") {
-			isAuthorized.value = true;
-			localStorage.setItem("login", login);
-			localStorage.setItem("password", password);
-			document.title = 'копаюсь... в чреве кита... грязюку всю';
-		} else {
-			Qual.error("Ошибка", "Пользователь с таким именем уже существует", err)
-		}
-	}).catch(() => {
-		Qual.error("error", "какая то ошибка", err);
+	axios.get(`${url}/auth/register?login=${login}&password=${password}`).then(() => {
+		isAuthorized.value = true;
+		localStorage.setItem("login", login);
+		localStorage.setItem("password", password);
+		document.title = 'копаюсь... в чреве кита... грязюку всю';
+	}).catch((err) => {
+		Qual.error("error", err.message);
 	});
 	return false;
 }
