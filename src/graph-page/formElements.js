@@ -4,7 +4,7 @@ import {dots, url} from "@/components/declareConsts.js";
 
 export const x = ref(0);
 export const y = ref(0);
-export const r = ref(0);
+export const r = ref(sessionStorage.getItem("r") ? parseInt(sessionStorage.getItem("r")) : 0);
 
 export function handleSubmit() {
 	let login = localStorage.getItem("login");
@@ -21,4 +21,5 @@ export function handleSubmit() {
 
 export function rChange() {
 	window.canvasDrawer.redrawAll(r.value);
+	sessionStorage.setItem("r", r.value);
 }
