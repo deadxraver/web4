@@ -72,7 +72,7 @@ export class CanvasDrawer {
 
 		this.ctx.fillStyle = `rgba(${rColor},${gColor},${bColor},0.35)`;
 
-		this.ctx.fillRect(this.SIZE / 2 - r * this.pointInPixels, this.SIZE / 2 - r * pointInPixels, r * pointInPixels, r * pointInPixels);
+		this.ctx.fillRect(this.SIZE / 2 - r / 2 * this.pointInPixels, this.SIZE / 2, r / 2 * pointInPixels, r * pointInPixels);
 
 		this.ctx.beginPath();
 		this.ctx.moveTo(this.SIZE / 2, this.SIZE / 2);
