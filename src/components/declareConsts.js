@@ -27,9 +27,3 @@ export const variant = ref(44444);
 export const fullName = ref('Чумаченко Даниил Олегович');
 
 export const count = ref(new Date().toLocaleDateString('ru-RU') + ' ' + new Date().toLocaleTimeString('ru-RU'));
-
-
-// window.onload = function () {
-// 	window.cavasDrawer = new CanvasDrawer();
-// 	window.cavasDrawer.redrawAll(1);
-// }
