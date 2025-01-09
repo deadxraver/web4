@@ -32,13 +32,11 @@ export class CanvasDrawer {
 			let login = localStorage.getItem("login");
 			let password = localStorage.getItem("password");
 			axios.get(`${url}/main/add?login=${login}&password=${password}&x=${graphX}&y=${graphY}&r=${r.value}`).then(msg => {
-				console.log(msg.data);
 				dots.value.push(msg.data);
 				this.drawPoint(msg.data.x, msg.data.y, msg.data.hit);
 			}).catch(msg => {
 				console.log(msg.message);
 			});
-			console.log(graphX, graphY);
 		});
 	}
 
@@ -50,7 +48,6 @@ export class CanvasDrawer {
 		this.setPointerAtDot(1);
 
 		for (let i = 0; i < dots.value.length; i++) {
-			console.log(dots.value[i].r, r.value);
 			if (dots.value[i].r === r.value) this.drawPoint(dots.value[i].x, dots.value[i].y, dots.value[i].hit)
 		}
 	}

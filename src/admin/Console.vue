@@ -6,7 +6,6 @@ import {adminPassword, adminUsername, authorized, users, userToBeRemoved} from "
 
 if (adminPassword.value && adminUsername.value) {
   axios.get(`${url}/admin/auth?username=${adminUsername.value}&password=${adminPassword.value}`).then((response) => {
-    console.log(response.data);
     users.value = response.data;
     authorized.value = true;
     localStorage.setItem("admin_username", adminUsername.value);

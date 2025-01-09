@@ -39,7 +39,6 @@ export function onLogin() {
 		localStorage.setItem("login", login);
 		localStorage.setItem("password", password);
 		document.title = 'копаюсь... в чреве кита... грязюку всю';
-		console.log(value.data);
 		document.getElementById("canvas").style.display = '';
 		dots.value = value.data;
 		window.canvasDrawer = new CanvasDrawer();
