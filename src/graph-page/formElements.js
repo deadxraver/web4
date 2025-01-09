@@ -10,7 +10,6 @@ export function handleSubmit() {
 	let login = localStorage.getItem("login");
 	let password = localStorage.getItem("password");
 	axios.get(`${url}/main/add?login=${login}&password=${password}&x=${x.value}&y=${y.value}&r=${r.value}`).then(msg => {
-		console.log(msg.data);
 		dots.value.push(msg.data);
 		window.canvasDrawer.drawPoint(msg.data.x, msg.data.y, msg.data.hit);
 	}).catch(msg => {

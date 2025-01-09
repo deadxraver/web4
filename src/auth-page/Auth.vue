@@ -27,7 +27,6 @@ if (localLogin && localPassword) {
     isAuthorized.value = true;
     document.title = 'копаюсь... в чреве кита... грязюку всю';
     dots.value = (value.data);
-    console.log(typeof dots, dots.value);
     document.getElementById("canvas").style.display = '';
     window.canvasDrawer = new CanvasDrawer();
     window.canvasDrawer.redrawAll(r.value);
